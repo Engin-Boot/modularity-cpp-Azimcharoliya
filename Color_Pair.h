@@ -1,5 +1,5 @@
 #include "Color_Assignment.h"
-#include <iomanip>
+
 namespace TelCoColorCoder
 {
 class ColorPair {
@@ -35,15 +35,14 @@ class ColorPair {
         return major * numberOfMinorColors + minor + 1;
     }
     
-    void print_color_coding()
+    std::string get_color_coding()
     {
-    std::cout << "\nColor Coding : \n";
-    std::cout << "\nNo : "<< "Major Minor\n"<< std::endl;
-
-    for (int i = 0; i < 25; i++)
-    {
-        TelCoColorCoder::ColorPair colorPair = TelCoColorCoder::GetColorFromPairNumber(i + 1);
-        std::cout<< std::setw(2)<<i+1<<" : "<<colorPair.ToString()<<std::endl;
-    }
-    }
+	    std::string color_mapping = "";
+	    for (int i = 0; i < numberOfMajorColors*numberOfMinorColors; i++)
+	    {
+		TelCoColorCoder::ColorPair colorPair = TelCoColorCoder::GetColorFromPairNumber(i + 1);
+		color_mapping = color_mapping + "\n" + std::to_string(i+1) + " : " + colorPair.ToString();
+	    }
+	    return color_mapping;
+	}
 }
